@@ -22,6 +22,7 @@ const NewRecipe = () => {
                 navigate(`/users/${user._id}`);
             }
         } catch (e) {
+            console.error(e);
             toast.error('Ошибка при создании рецепта');
         }
     };

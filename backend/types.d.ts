@@ -1,5 +1,5 @@
 import {Request} from "express";
-import {HydratedDocument} from "mongoose";
+import {HydratedDocument, Types} from "mongoose";
 
 export interface UserFields {
     username: string;

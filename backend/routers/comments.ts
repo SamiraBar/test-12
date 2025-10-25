@@ -24,12 +24,17 @@ commentsRouter.get('/', async (req, res, next) => {
     }
 });
 
-commentsRouter.post('/', async (req, res, next) => {
+commentsRouter.post('/', auth, async (req, res, next) => {
     try {
         const user = (req as RequestWithUser).user;
 
         if (!req.body.recipe || !req.body.text) {
             return res.status(400).send({error: 'Recipe ID is required'})
+        }
+
+        const recipeExists = await Recipe.findById(req.body.recipe);
+        if (!recipeExists) {
+            return res.status(404).send({error: 'Recipe not found'});
         }
 
         const comment = await Comment.create({

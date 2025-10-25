@@ -9,6 +9,7 @@ import {selectUser} from "./features/users/usersSlice.ts";
 import {useAppSelector} from "./app/hooks.ts";
 import ProtectedRoute from "./components/UI/ProtectedRoute/ProtectedRoute.tsx";
 import NewRecipe from "./features/recipes/NewRecipe.tsx";
+import OneRecipe from "./features/recipes/OneRecipe.tsx";
 
 const App = () => {
     const user = useAppSelector(selectUser);
@@ -21,6 +22,7 @@ const App = () => {
             <Container maxWidth="xl" component="main" sx={{ mt: 4 }}>
                 <Routes>
                     <Route path="/" element={<Recipes />} />
+                    <Route path="/recipes/:id" element={<OneRecipe />} />
                     <Route path="/users/:userId" element={<UserRecipes />} />
                     <Route
                         path="/recipes/new"
