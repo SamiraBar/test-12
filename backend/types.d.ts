@@ -10,6 +10,13 @@ export interface UserFields {
     googleId?: string;
 }
 
+export interface RecipeFields {
+    user: Types.ObjectId;
+    title: string;
+    recipe: string;
+    image: string;
+}
+
 export interface RequestWithUser extends Request {
     user: HydratedDocument<UserFields>
 }
