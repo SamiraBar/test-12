@@ -31,21 +31,27 @@ const UserMenu: FC<Props> = ({ user }) => {
         navigate('/');
     };
 
-    const handleMyCocktails = () => {
+    const handleMyRecipes = () => {
         handleClose();
-        navigate('/my-recipes');
+        navigate(`/users/${user._id}`);
+    };
+
+    const handleAddRecipe = () => {
+        handleClose();
+        navigate('/recipes/new');
     };
 
     const avatarUrl = user.avatar ? `${API_URL}/${user.avatar}` : undefined;
 
     return (
         <>
-            <Button onClick={handleClick} color="inherit" sx={{ display: 'flex', gap: 1,color: 'primary.dark', alignItems: 'center' }}>
-                <Avatar src={avatarUrl} alt={user.displayName} sx={{ width: 42, height: 42}} />
-                {user.displayName }
+            <Button onClick={handleClick} color="inherit" sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                <Avatar src={avatarUrl} alt={user.displayName} sx={{ width: 32, height: 32 }} />
+                {user.displayName}
             </Button>
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-                <MenuItem onClick={handleMyCocktails}>Мои рецепты</MenuItem>
+                <MenuItem onClick={handleMyRecipes}>Мои рецепты</MenuItem>
+                <MenuItem onClick={handleAddRecipe}>Добавить рецепт</MenuItem>
                 <MenuItem onClick={handleLogout}>Выход</MenuItem>
             </Menu>
         </>
