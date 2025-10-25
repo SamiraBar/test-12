@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import config from "./config";
 import User from "./models/User";
 import Recipe from "./models/Recipe";
+import Comment from "./models/Comment";
 import {randomUUID} from "node:crypto";
 
 const run = async () => {
@@ -11,6 +12,7 @@ const run = async () => {
     try {
         await db.dropCollection('users');
         await db.dropCollection('recipes');
+        await db.dropCollection('comments');
     } catch (e) {
         console.log('Collections were not present, skipping drop...');
     }
@@ -44,6 +46,20 @@ const run = async () => {
         title: 'Борщ',
         recipe: 'Сварите бульон из мяса. Добавьте нарезанный картофель. Обжарьте лук, морковь, свеклу. Добавьте в бульон. Добавьте капусту, томатную пасту. Варите до готовности овощей.',
         image: 'fixtures/borsch.jpg',
+    });
+
+    await Comment.create({
+        user: user2._id,
+        recipe: recipe1._id,
+        text: 'Получилось очень вкусно!',
+    },{
+        user: user1._id,
+        recipe: recipe3._id,
+        text: 'Спасибо за рецепт!',
+    }, {
+        user: user2._id,
+        recipe: recipe2._id,
+        text: 'Отличный рецепт!',
     });
 
     await db.close();

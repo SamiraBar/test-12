@@ -17,6 +17,12 @@ export interface RecipeFields {
     image: string;
 }
 
+export interface CommentFields {
+    user: Types.ObjectId;
+    recipe: Types.ObjectId;
+    text: string;
+}
+
 export interface RequestWithUser extends Request {
     user: HydratedDocument<UserFields>
 }
