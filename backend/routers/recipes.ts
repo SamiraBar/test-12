@@ -4,6 +4,7 @@ import Recipe from "../models/Recipe";
 import mongoose from "mongoose";
 import auth from "../middleware/auth";
 import {RequestWithUser} from "../types";
+import Comment from "../models/Comment";
 
 const recipesRouter = express.Router();
 
@@ -92,7 +93,10 @@ recipesRouter.delete('/:id', auth, async (req, res, next) => {
             return res.status(403).send({error: 'You do not have permission to delete this recipe'});
         }
 
+        await Comment.deleteMany({recipe: req.params.id});
+
         await Recipe.deleteOne({_id: req.params.id});
+
         res.status(204).send();
     } catch (error) {
         next(error);

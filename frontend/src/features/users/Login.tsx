@@ -33,6 +33,7 @@ const Login = () => {
             toast.success('Вход выполнен успешно!');
             navigate('/');
         } catch (e) {
+            console.error(e);
             toast.error('Неверные данные');
         }
     };
