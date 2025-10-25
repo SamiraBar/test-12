@@ -46,6 +46,7 @@ const Register = () => {
             toast.success('Регистрация успешна!');
             navigate('/');
         } catch (e) {
+            console.error(e);
             toast.error('Ошибка регистрации');
         }
     };

@@ -25,6 +25,7 @@ const RecipeSchema = new Schema<RecipeFields>({
     recipe: {
         type: String,
         required: true,
+        trim: true,
     },
     image: {
         type: String,

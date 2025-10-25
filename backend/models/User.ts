@@ -33,6 +33,7 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
     password: {
         type: String,
         required: true,
+        trim: true
     },
     token: {
         type: String,
@@ -41,6 +42,7 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
     displayName: {
         type: String,
         required: true,
+        trim: true
     },
     avatar: {
         type: String,
